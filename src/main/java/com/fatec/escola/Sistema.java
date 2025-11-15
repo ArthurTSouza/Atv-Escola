@@ -31,26 +31,36 @@ public class Sistema {
 
     private double calculoMedia(double[] notas) {
         double media = 0.0;
+        notas = this.getNotasAluno();
         for (int i = 0; i < 3; i++) {
             media += notas[i];
         }
         media = media / 3;
-
-        if (media < 6.0) {
-            System.out.println("Reprovado \n");
-        } else if (media >= 6.0 && media <= 9.0) {
-            System.out.println("Aprovado\n");
-        } else if (media > 9.0 && media <= 10.0) {
-            System.out.println("Otimo Aproveitamento\n");
-        } else {
-            System.out.println("Media Invalida\n");
-        }
-        System.out.println("A media foi: \n"+media);
-
         return media;
     }
 
     public double getMedia() {
         return this.calculoMedia(notasAluno);
     }
+    
+    private String calculoResultado() {
+
+        double media = this.calculoMedia(this.getNotasAluno());
+        String resultado;
+        if (media >= 0 && media < 6.0) {
+            resultado = "Reprovado";
+        } else if (media >= 6.0 && media <= 9.0) {
+            resultado = "Aprovado";
+        } else if (media > 9.0 && media <= 10.0) {
+            resultado = "Otimo Aproveitamento";
+        } else {
+            resultado = "Media invalida";
+        }
+        return resultado;
+    }
+    
+    public String getResultado(){
+        return this.calculoResultado();
+    }
+    
 }
